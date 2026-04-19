@@ -1,0 +1,100 @@
+---
+import { Icon } from "astro-icon/components";
+import { tv, type VariantProps } from "tailwind-variants/lite";
+
+interface Props extends VariantProps<typeof iconBox> {
+    class?: string;
+}
+
+const { variant = "information", class: className } = Astro.props;
+
+const iconBox = tv({
+    slots: {
+        container: "flex items-center gap-4 rounded border p-5 block",
+        icon: "text-4xl shrink-0",
+        divider: "w-px self-stretch shrink-0",
+        content: "flex-1",
+    },
+    variants: {
+        variant: {
+            information: {
+                container: "bg-[#f3fafe] border-[#bde4fc]",
+                icon: "text-[#87cefa]",
+                divider: "bg-[#bde4fc]",
+            },
+            question: {
+                container: "bg-[#fff7cc] border-[#ffe766]",
+                icon: "text-[gold]",
+                divider: "bg-[#ffe766]",
+            },
+            alert: {
+                container: "bg-[#fdf2f2] border-[#f6b9b9]",
+                icon: "text-[#f3aca9]",
+                divider: "bg-[#f6b9b9]",
+            },
+            memo: {
+                container: "bg-[#ebf8f4] border-[#8dd7c1]",
+                icon: "text-[#7ad0b6]",
+                divider: "bg-[#8dd7c1]",
+            },
+            comment: {
+                container: "bg-[#fefefe] border-[#ccd]",
+                icon: "text-[#999]",
+                divider: "bg-[#ccd]",
+            },
+            ok: {
+                container: "bg-[#f2fafb] border-[#3cb2cc]",
+                icon: "text-[#3cb2cc]",
+                divider: "bg-[#3cb2cc]",
+            },
+            ng: {
+                container: "bg-[#ffe7e7] border-[#dd5454]",
+                icon: "text-[#dd5454]",
+                divider: "bg-[#dd5454]",
+            },
+            good: {
+                container: "bg-[#f7fcf7] border-[#98e093]",
+                icon: "text-[#98e093]",
+                divider: "bg-[#98e093]",
+            },
+            bad: {
+                container: "bg-[#fff1f4] border-[#eb6980]",
+                icon: "text-[#eb6980]",
+                divider: "bg-[#eb6980]",
+            },
+            profile: {
+                container: "bg-[#fefefe] border-[#ccd]",
+                icon: "text-[#999]",
+                divider: "bg-[#ccd]",
+            },
+        },
+    },
+    defaultVariants: {
+        variant: "information",
+    },
+});
+
+const icons = {
+    information: "fa:info-circle",
+    question: "fa:question-circle",
+    alert: "fa:exclamation-circle",
+    memo: "fa:pencil",
+    comment: "fa-regular:comment",
+    ok: "fa-regular:circle",
+    ng: "fa7-solid:xmark",
+    good: "fa:thumbs-up",
+    bad: "fa:thumbs-down",
+    profile: "fa:user",
+} as const;
+
+const styles = iconBox({ variant });
+const iconName = icons[variant];
+---
+
+<div class={styles.container({ class: className })} data-slot="iconbox">
+    <Icon name={iconName} class={styles.icon()} />
+    <div class={styles.divider()}></div>
+    <div class={styles.content()}>
+        <slot />
+    </div>
+</div>

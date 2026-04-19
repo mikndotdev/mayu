@@ -1,0 +1,140 @@
+---
+import Layout from '../layouts/Layout.astro';
+import IconBox from '../components/blocks/iconbox.astro';
+import InfoBox from '../components/blocks/infoBox.astro';
+import '../styles/global.css';
+---
+
+<Layout>
+    <main class="max-w-4xl mx-auto p-8 space-y-8">
+        <h1 class="text-4xl font-bold mb-8">IconBox Component Demo</h1>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Information</h2>
+            <IconBox variant="information">
+                This is an information box. Use it to highlight important information or tips for your readers.
+            </IconBox>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Question</h2>
+            <IconBox variant="question">
+                This is a question box. Use it to pose questions or highlight points that need clarification.
+            </IconBox>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Alert</h2>
+            <IconBox variant="alert">
+                This is an alert box. Use it to warn readers about important issues or potential problems.
+            </IconBox>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Memo</h2>
+            <IconBox variant="memo">
+                This is a memo box. Use it for notes, reminders, or general memorandums.
+            </IconBox>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Comment</h2>
+            <IconBox variant="comment">
+                This is a comment box. Use it to add editorial comments or additional thoughts.
+            </IconBox>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">OK</h2>
+            <IconBox variant="ok">
+                This is an OK box. Use it to indicate approved or correct information.
+            </IconBox>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">NG (No Good)</h2>
+            <IconBox variant="ng">
+                This is an NG box. Use it to indicate incorrect or disapproved information.
+            </IconBox>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Good</h2>
+            <IconBox variant="good">
+                This is a good box. Use it to highlight positive aspects or benefits.
+            </IconBox>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Bad</h2>
+            <IconBox variant="bad">
+                This is a bad box. Use it to highlight negative aspects or drawbacks.
+            </IconBox>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Profile</h2>
+            <IconBox variant="profile">
+                This is a profile box. Use it to display user profiles, author information, or biographical content.
+            </IconBox>
+        </section>
+
+        <h1 class="text-4xl font-bold mt-16 mb-8">InfoBox Component Demo</h1>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Primary</h2>
+            <InfoBox variant="primary">
+                This is a primary info box. Use it for important primary information.
+            </InfoBox>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Success</h2>
+            <InfoBox variant="success">
+                This is a success info box. Use it to indicate successful operations or positive outcomes.
+            </InfoBox>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Info</h2>
+            <InfoBox variant="info">
+                This is an info box. Use it for general informational messages.
+            </InfoBox>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Warning</h2>
+            <InfoBox variant="warning">
+                This is a warning info box. Use it to warn users about potential issues.
+            </InfoBox>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Danger</h2>
+            <InfoBox variant="danger">
+                This is a danger info box. Use it to highlight dangerous actions or critical errors.
+            </InfoBox>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Secondary</h2>
+            <InfoBox variant="secondary">
+                This is a secondary info box. Use it for secondary or less prominent information.
+            </InfoBox>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Light</h2>
+            <InfoBox variant="light">
+                This is a light info box. Use it for subtle, light-colored notifications.
+            </InfoBox>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Dark</h2>
+            <InfoBox variant="dark">
+                This is a dark info box. Use it for darker-themed messages.
+            </InfoBox>
+        </section>
+    </main>
+</Layout>

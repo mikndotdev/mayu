@@ -1,0 +1,32 @@
+---
+import { tv, type VariantProps } from "tailwind-variants/lite";
+
+interface Props extends VariantProps<typeof infoBox> {
+    class?: string;
+}
+
+const { variant = "primary", class: className } = Astro.props;
+
+const infoBox = tv({
+    base: "rounded p-[15px] block",
+    variants: {
+        variant: {
+            primary: "text-[#004085] bg-[#cce5ff]",
+            success: "text-[#155724] bg-[#d4edda]",
+            info: "text-[#0c5460] bg-[#d1ecf1]",
+            warning: "text-[#856404] bg-[#fff3cd]",
+            danger: "text-[#721c24] bg-[#f8d7da]",
+            secondary: "text-[#383d41] bg-[#e2e3e5]",
+            light: "text-[#818182] bg-[#fefefe]",
+            dark: "text-[#1b1e21] bg-[#d6d8d9]",
+        },
+    },
+    defaultVariants: {
+        variant: "primary",
+    },
+});
+---
+
+<div class={infoBox({ variant, class: className })} data-slot="infobox">
+    <slot />
+</div>
