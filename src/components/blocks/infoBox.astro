@@ -1,4 +1,5 @@
 ---
+import Card from "@/components/primitives/card.astro";
 import { tv, type VariantProps } from "tailwind-variants/lite";
 
 interface Props extends VariantProps<typeof infoBox> {
@@ -8,7 +9,7 @@ interface Props extends VariantProps<typeof infoBox> {
 const { variant = "primary", class: className } = Astro.props;
 
 const infoBox = tv({
-    base: "rounded p-[15px] block",
+    base: "block",
     variants: {
         variant: {
             primary: "text-[#004085] bg-[#cce5ff]",
@@ -27,6 +28,6 @@ const infoBox = tv({
 });
 ---
 
-<div class={infoBox({ variant, class: className })} data-slot="infobox">
+<Card class={infoBox({ variant, class: className })} data-slot="infobox">
     <slot />
-</div>
+</Card>

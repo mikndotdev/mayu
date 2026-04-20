@@ -1,0 +1,48 @@
+---
+import Card from "@/components/primitives/card.astro";
+import { tv, type VariantProps } from "tailwind-variants/lite";
+
+interface Props extends VariantProps<typeof colorBox> {
+    class?: string;
+}
+
+const { variant = "red", class: className } = Astro.props;
+
+const colorBox = tv({
+    base: "border-[3px] border-radius-[var(--basic-border-radius)]",
+    variants: {
+        variant: {
+            red: "border-[var(--red-color)]",
+            pink: "border-[var(--pink-color)]",
+            purple: "border-[var(--purple-color)]",
+            deep: "border-[var(--deep-color)]",
+            indigo: "border-[var(--indigo-color)]",
+            blue: "border-[var(--blue-color)]",
+            "light-blue": "border-[var(--light-blue-color)]",
+            cyan: "border-[var(--cyan-color)]",
+            teal: "border-[var(--teal-color)]",
+            green: "border-[var(--green-color)]",
+            "light-green": "border-[var(--light-green-color)]",
+            lime: "border-[var(--lime-color)]",
+            yellow: "border-[var(--yellow-color)]",
+            amber: "border-[var(--amber-color)]",
+            orange: "border-[var(--orange-color)]",
+            "deep-orange": "border-[var(--deep-orange-color)]",
+            brown: "border-[var(--brown-color)]",
+            "light-grey": "border-[var(--light-grey-color)]",
+            grey: "border-[var(--grey-color)]",
+            "dark-grey": "border-[var(--dark-grey-color)]",
+            "blue-gray": "border-[var(--blue-gray-color)]",
+            black: "border-[var(--black-color)]",
+            white: "border-[var(--white-color)]",
+        },
+    },
+    defaultVariants: {
+        variant: "red",
+    },
+});
+---
+
+<Card class={colorBox({ variant, class: className })} data-slot="colorbox">
+    <slot />
+</Card>

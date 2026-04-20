@@ -6,6 +6,6 @@ interface Props extends HTMLAttributes<"div"> {}
 const { class: className, ...rest } = Astro.props;
 ---
 
-<div class={className} style="padding: var(--box-padding)" data-slot="card" {...rest}>
+<div class={className} style="padding: var(--box-padding); border-radius: var(--basic-border-radius)" data-slot="card" {...rest}>
     <slot />
 </div>

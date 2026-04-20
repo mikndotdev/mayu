@@ -1,4 +1,5 @@
 ---
+import Card from "@/components/primitives/card.astro";
 import { Icon } from "astro-icon/components";
 import { tv, type VariantProps } from "tailwind-variants/lite";
 
@@ -10,7 +11,7 @@ const { variant = "information", class: className } = Astro.props;
 
 const iconBox = tv({
     slots: {
-        container: "flex items-center gap-4 rounded border p-5 block",
+        container: "flex items-center gap-4 border block",
         icon: "text-4xl shrink-0",
         divider: "w-px self-stretch shrink-0",
         content: "flex-1",
@@ -91,10 +92,10 @@ const styles = iconBox({ variant });
 const iconName = icons[variant];
 ---
 
-<div class={styles.container({ class: className })} data-slot="iconbox">
+<Card class={styles.container({ class: className })} data-slot="iconbox">
     <Icon name={iconName} class={styles.icon()} />
     <div class={styles.divider()}></div>
     <div class={styles.content()}>
         <slot />
     </div>
-</div>
+</Card>

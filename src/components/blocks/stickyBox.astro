@@ -1,0 +1,30 @@
+---
+import Card from "@/components/primitives/card.astro";
+import { tv, type VariantProps } from "tailwind-variants/lite";
+
+interface Props extends VariantProps<typeof stickyBox> {
+    class?: string;
+}
+
+const { variant = "yellow", class: className } = Astro.props;
+
+const stickyBox = tv({
+    base: "border-l-[6px] block",
+    variants: {
+        variant: {
+            yellow: "border-[#ffa103] bg-[#ffeac7]",
+            red: "border-[#cd3740] bg-[#f5dadc]",
+            blue: "border-[#0066cc] bg-[#e5f2ff]",
+            green: "border-[#028760] bg-[#cbefe4]",
+            gray: "border-[#999] bg-[#f5f6f7]",
+        },
+    },
+    defaultVariants: {
+        variant: "yellow",
+    },
+});
+---
+
+<Card class={stickyBox({ variant, class: className })} data-slot="stickybox">
+    <slot />
+</Card>
