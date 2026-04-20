@@ -1,0 +1,124 @@
+---
+import Card from "@/components/primitives/card.astro";
+import TabBadge from "@/components/primitives/tabBadge.astro";
+import { Icon } from "astro-icon/components";
+import { tv, type VariantProps } from "tailwind-variants/lite";
+
+interface Props extends VariantProps<typeof tabBox> {
+    class?: string;
+}
+
+const { variant = "check", class: className } = Astro.props;
+
+const tabBox = tv({
+    slots: {
+        card: "border-[3px] rounded-tl-none",
+        badge: "flex flex-row items-center gap-1 uppercase",
+        icon: "text-[11px]",
+    },
+    variants: {
+        variant: {
+            check: {
+                card: "border-[var(--grey-color)]",
+                badge: "bg-[var(--grey-color)] text-white",
+            },
+            comment: {
+                card: "border-[var(--yellow-color)]",
+                badge: "bg-[var(--yellow-color)] text-white",
+            },
+            point: {
+                card: "border-[var(--red-color)]",
+                badge: "bg-[var(--red-color)] text-white",
+            },
+            tips: {
+                card: "border-[var(--blue-color)]",
+                badge: "bg-[var(--blue-color)] text-white",
+            },
+            hint: {
+                card: "border-[var(--green-color)]",
+                badge: "bg-[var(--green-color)] text-white",
+            },
+            pickup: {
+                card: "border-[var(--grey-color)]",
+                badge: "bg-[var(--grey-color)] text-white",
+            },
+            bookmark: {
+                card: "border-[var(--yellow-color)]",
+                badge: "bg-[var(--yellow-color)] text-white",
+            },
+            memo: {
+                card: "border-[var(--red-color)]",
+                badge: "bg-[var(--red-color)] text-white",
+            },
+            download: {
+                card: "border-[var(--blue-color)]",
+                badge: "bg-[var(--blue-color)] text-white",
+            },
+            break: {
+                card: "border-[var(--green-color)]",
+                badge: "bg-[var(--green-color)] text-white",
+            },
+            amazon: {
+                card: "border-[var(--yellow-color)]",
+                badge: "bg-[var(--yellow-color)] text-white",
+            },
+            ok: {
+                card: "border-[var(--blue-color)]",
+                badge: "bg-[var(--blue-color)] text-white",
+            },
+            ng: {
+                card: "border-[var(--red-color)]",
+                badge: "bg-[var(--red-color)] text-white",
+            },
+            good: {
+                card: "border-[var(--green-color)]",
+                badge: "bg-[var(--green-color)] text-white",
+            },
+            bad: {
+                card: "border-[var(--grey-color)]",
+                badge: "bg-[var(--grey-color)] text-white",
+            },
+            profile: {
+                card: "border-[var(--blue-color)]",
+                badge: "bg-[var(--blue-color)] text-white",
+            },
+        },
+    },
+    defaultVariants: {
+        variant: "check",
+    },
+});
+
+const icons = {
+    check: "fa:check",
+    comment: "fa:comment",
+    point: "fa7-solid:lightbulb",
+    tips: "fa:graduation-cap",
+    hint: "fa:bell",
+    pickup: "fa:star",
+    bookmark: "fa:bookmark",
+    memo: "fa:sticky-note",
+    download: "fa:download",
+    break: "fa:coffee",
+    amazon: "fa:amazon",
+    ok: "fa:circle",
+    ng: "fa:times",
+    good: "fa:thumbs-up",
+    bad: "fa:thumbs-down",
+    profile: "fa:user",
+} as const;
+
+const styles = tabBox({ variant });
+const iconName = icons[variant];
+const variantLabel = variant.toUpperCase();
+---
+
+<div class="relative mt-8">
+    <TabBadge class={styles.badge()}>
+        <Icon name={iconName} class={styles.icon()} />
+        <span>{variantLabel}</span>
+    </TabBadge>
+    <Card class={styles.card({ class: className })} style="border-top-left-radius: 0;" data-slot="tabbox">
+        <slot />
+    </Card>
+</div>
