@@ -1,0 +1,172 @@
+---
+import { tv, type VariantProps } from "tailwind-variants/lite";
+
+interface Props extends VariantProps<typeof chatBubble> {
+    icon: string;
+    class?: string;
+}
+
+const {
+    icon,
+    iconVariant = "rounded",
+    position = "left",
+    bubbleVariant = "normal",
+    class: className
+} = Astro.props;
+
+const chatBubble = tv({
+    slots: {
+        container: "flex gap-4 items-start my-4",
+        icon: "flex-shrink-0 w-[12%] aspect-square border-2 border-[var(--basic-border-color)] overflow-hidden flex items-center justify-center",
+        iconImage: "w-full h-full object-cover",
+        bubble: "relative flex-1 px-6 py-4 rounded-lg",
+    },
+    variants: {
+        iconVariant: {
+            rounded: {
+                icon: "rounded-full",
+            },
+            square: {
+                icon: "rounded-md",
+            },
+        },
+        position: {
+            left: {
+                container: "flex-row",
+                bubble: "bubble-left",
+            },
+            right: {
+                container: "flex-row-reverse",
+                bubble: "bubble-right",
+            },
+        },
+        bubbleVariant: {
+            normal: {
+                bubble: "bg-[var(--white-color)] border-2 border-[var(--custom-border-color)] text-[var(--custom-text-color)] bubble-normal",
+            },
+            flat: {
+                bubble: "bg-[var(--custom-background-color)] text-[var(--custom-text-color)] bubble-flat",
+            },
+            line: {
+                bubble: "bg-[var(--line-chat-color)] text-[var(--custom-text-color)] bubble-line",
+            },
+        },
+    },
+    defaultVariants: {
+        iconVariant: "rounded",
+        position: "left",
+        bubbleVariant: "normal",
+    },
+});
+
+const styles = chatBubble({ iconVariant, position, bubbleVariant });
+---
+
+<div class={styles.container({ class: className })} data-slot="chatbubble">
+    <div class={styles.icon()}>
+        <img src={icon} alt="Chat icon" class={styles.iconImage()} />
+    </div>
+    <div class={styles.bubble()}>
+        <slot />
+    </div>
+</div>
+
+<style>
+    /* Speech bubble pointer - left position */
+    .bubble-left.bubble-normal::before {
+        content: "";
+        position: absolute;
+        left: -10px;
+        top: 20px;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 10px 10px 10px 0;
+        border-color: transparent var(--custom-border-color) transparent transparent;
+    }
+
+    .bubble-left.bubble-normal::after {
+        content: "";
+        position: absolute;
+        left: -8px;
+        top: 21px;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 9px 9px 9px 0;
+        border-color: transparent var(--white-color) transparent transparent;
+    }
+
+    .bubble-left.bubble-flat::before {
+        content: "";
+        position: absolute;
+        left: -10px;
+        top: 20px;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 10px 10px 10px 0;
+        border-color: transparent var(--custom-background-color) transparent transparent;
+    }
+
+    .bubble-left.bubble-line::before {
+        content: "";
+        position: absolute;
+        left: -10px;
+        top: 20px;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 10px 10px 10px 0;
+        border-color: transparent var(--line-chat-color) transparent transparent;
+    }
+
+    /* Speech bubble pointer - right position */
+    .bubble-right.bubble-normal::before {
+        content: "";
+        position: absolute;
+        right: -10px;
+        top: 20px;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 10px 0 10px 10px;
+        border-color: transparent transparent transparent var(--custom-border-color);
+    }
+
+    .bubble-right.bubble-normal::after {
+        content: "";
+        position: absolute;
+        right: -8px;
+        top: 21px;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 9px 0 9px 9px;
+        border-color: transparent transparent transparent var(--white-color);
+    }
+
+    .bubble-right.bubble-flat::before {
+        content: "";
+        position: absolute;
+        right: -10px;
+        top: 20px;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 10px 0 10px 10px;
+        border-color: transparent transparent transparent var(--custom-background-color);
+    }
+
+    .bubble-right.bubble-line::before {
+        content: "";
+        position: absolute;
+        right: -10px;
+        top: 20px;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 10px 0 10px 10px;
+        border-color: transparent transparent transparent var(--line-chat-color);
+    }
+</style>

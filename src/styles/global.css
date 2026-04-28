@@ -11,6 +11,7 @@
   --google-plus-color: #dd4b39;
   --pocket-color: #ef4056;
   --line-color: #00c300;
+  --line-chat-color: #85e249;
   --linkedin-color: #0077b5;
   --website-color: #002561;
   --instagram-color: #405de6;
@@ -58,8 +59,8 @@
   --watery-yellow-color: #fff7cc;
   --watery-red-color: #fdf2f2;
   --watery-green-color: #ebf8f4;
-  --custom-background-color: inherit;
-  --custom-text-color: inherit;
+  --custom-background-color: #f1f1f1;
+  --custom-text-color: #333;
   --custom-border-color: #ccc;
   --text-color: #333;
   --pallid-text-color: #777;

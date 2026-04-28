@@ -1,0 +1,223 @@
+---
+import Card from "@/components/primitives/card.astro";
+import { Icon } from "astro-icon/components";
+import { tv, type VariantProps } from "tailwind-variants/lite";
+import { button } from "@/components/primitives/button.astro";
+
+interface Props extends VariantProps<typeof button> {
+    title: string;
+    class?: string;
+    defaultOpen?: boolean;
+}
+
+const {
+    title,
+    variant = "black",
+    size = "md",
+    class: className,
+    defaultOpen = false,
+} = Astro.props;
+
+const accordionId = `accordion-${Math.random().toString(36).substring(7)}`;
+
+const accordionBorder = tv({
+    base: "border border-t-0 rounded-b-[var(--basic-border-radius)]",
+    variants: {
+        variant: {
+            twitter: "border-[var(--twitter-color)]",
+            mastodon: "border-[var(--mastodon-color)]",
+            bluesky: "border-[var(--bluesky-color)]",
+            misskey: "border-[var(--misskey-color)]",
+            facebook: "border-[var(--facebook-color)]",
+            threads: "border-[var(--threads-color)]",
+            hatebu: "border-[var(--hatebu-color)]",
+            "google-plus": "border-[var(--google-plus-color)]",
+            pocket: "border-[var(--pocket-color)]",
+            line: "border-[var(--line-color)]",
+            linkedin: "border-[var(--linkedin-color)]",
+            website: "border-[var(--website-color)]",
+            instagram: "border-[var(--instagram-color)]",
+            pinterest: "border-[var(--pinterest-color)]",
+            youtube: "border-[var(--youtube-color)]",
+            tiktok: "border-[var(--tiktok-color)]",
+            note: "border-[var(--note-color)]",
+            soundcloud: "border-[var(--soundcloud-color)]",
+            flickr: "border-[var(--flickr-color)]",
+            amazon: "border-[var(--amazon-color)]",
+            twitch: "border-[var(--twitch-color)]",
+            rakuten: "border-[var(--rakuten-color)]",
+            "rakuten-room": "border-[var(--rakuten-room-color)]",
+            slack: "border-[var(--slack-color)]",
+            github: "border-[var(--github-color)]",
+            codepen: "border-[var(--codepen-color)]",
+            feedly: "border-[var(--feedly-color)]",
+            rss: "border-[var(--rss-color)]",
+            copy: "border-[var(--copy-color)]",
+            comment: "border-[var(--comment-color)]",
+            red: "border-[var(--red-color)]",
+            pink: "border-[var(--pink-color)]",
+            purple: "border-[var(--purple-color)]",
+            deep: "border-[var(--deep-color)]",
+            indigo: "border-[var(--indigo-color)]",
+            blue: "border-[var(--blue-color)]",
+            "light-blue": "border-[var(--light-blue-color)]",
+            cyan: "border-[var(--cyan-color)]",
+            teal: "border-[var(--teal-color)]",
+            green: "border-[var(--green-color)]",
+            "light-green": "border-[var(--light-green-color)]",
+            lime: "border-[var(--lime-color)]",
+            yellow: "border-[var(--yellow-color)]",
+            amber: "border-[var(--amber-color)]",
+            orange: "border-[var(--orange-color)]",
+            "deep-orange": "border-[var(--deep-orange-color)]",
+            brown: "border-[var(--brown-color)]",
+            "light-grey": "border-[var(--light-grey-color)]",
+            grey: "border-[var(--grey-color)]",
+            "dark-grey": "border-[var(--dark-grey-color)]",
+            "blue-gray": "border-[var(--blue-gray-color)]",
+            black: "border-[var(--black-color)]",
+            white: "border-[var(--white-color)]",
+            "watery-blue": "border-[var(--watery-blue-color)]",
+            "watery-yellow": "border-[var(--watery-yellow-color)]",
+            "watery-red": "border-[var(--watery-red-color)]",
+            "watery-green": "border-[var(--watery-green-color)]",
+            "twitter-outline": "border-[var(--twitter-color)]",
+            "mastodon-outline": "border-[var(--mastodon-color)]",
+            "bluesky-outline": "border-[var(--bluesky-color)]",
+            "misskey-outline": "border-[var(--misskey-color)]",
+            "facebook-outline": "border-[var(--facebook-color)]",
+            "threads-outline": "border-[var(--threads-color)]",
+            "hatebu-outline": "border-[var(--hatebu-color)]",
+            "google-plus-outline": "border-[var(--google-plus-color)]",
+            "pocket-outline": "border-[var(--pocket-color)]",
+            "line-outline": "border-[var(--line-color)]",
+            "linkedin-outline": "border-[var(--linkedin-color)]",
+            "website-outline": "border-[var(--website-color)]",
+            "instagram-outline": "border-[var(--instagram-color)]",
+            "pinterest-outline": "border-[var(--pinterest-color)]",
+            "youtube-outline": "border-[var(--youtube-color)]",
+            "tiktok-outline": "border-[var(--tiktok-color)]",
+            "note-outline": "border-[var(--note-color)]",
+            "soundcloud-outline": "border-[var(--soundcloud-color)]",
+            "flickr-outline": "border-[var(--flickr-color)]",
+            "amazon-outline": "border-[var(--amazon-color)]",
+            "twitch-outline": "border-[var(--twitch-color)]",
+            "rakuten-outline": "border-[var(--rakuten-color)]",
+            "rakuten-room-outline": "border-[var(--rakuten-room-color)]",
+            "slack-outline": "border-[var(--slack-color)]",
+            "github-outline": "border-[var(--github-color)]",
+            "codepen-outline": "border-[var(--codepen-color)]",
+            "feedly-outline": "border-[var(--feedly-color)]",
+            "rss-outline": "border-[var(--rss-color)]",
+            "copy-outline": "border-[var(--copy-color)]",
+            "comment-outline": "border-[var(--comment-color)]",
+            "red-outline": "border-[var(--red-color)]",
+            "pink-outline": "border-[var(--pink-color)]",
+            "purple-outline": "border-[var(--purple-color)]",
+            "deep-outline": "border-[var(--deep-color)]",
+            "indigo-outline": "border-[var(--indigo-color)]",
+            "blue-outline": "border-[var(--blue-color)]",
+            "light-blue-outline": "border-[var(--light-blue-color)]",
+            "cyan-outline": "border-[var(--cyan-color)]",
+            "teal-outline": "border-[var(--teal-color)]",
+            "green-outline": "border-[var(--green-color)]",
+            "light-green-outline": "border-[var(--light-green-color)]",
+            "lime-outline": "border-[var(--lime-color)]",
+            "yellow-outline": "border-[var(--yellow-color)]",
+            "amber-outline": "border-[var(--amber-color)]",
+            "orange-outline": "border-[var(--orange-color)]",
+            "deep-orange-outline": "border-[var(--deep-orange-color)]",
+            "brown-outline": "border-[var(--brown-color)]",
+            "light-grey-outline": "border-[var(--light-grey-color)]",
+            "grey-outline": "border-[var(--grey-color)]",
+            "dark-grey-outline": "border-[var(--dark-grey-color)]",
+            "blue-gray-outline": "border-[var(--blue-gray-color)]",
+            "black-outline": "border-[var(--black-color)]",
+            "white-outline": "border-[var(--white-color)]",
+            "watery-blue-outline": "border-[var(--watery-blue-color)]",
+            "watery-yellow-outline": "border-[var(--watery-yellow-color)]",
+            "watery-red-outline": "border-[var(--watery-red-color)]",
+            "watery-green-outline": "border-[var(--watery-green-color)]",
+        },
+    },
+    defaultVariants: {
+        variant: "black",
+    },
+});
+---
+
+<div class={`accordion-container ${className || ""}`}>
+    <input
+        type="checkbox"
+        id={accordionId}
+        class="accordion-checkbox"
+        checked={defaultOpen}
+    />
+    <label
+        for={accordionId}
+        class={button({ variant, size })}
+        style="width: 100%; justify-content: center; cursor: pointer;"
+    >
+        <Icon name="fa:plus" class="accordion-icon-plus accordion-icon" />
+        <Icon name="fa:minus" class="accordion-icon-minus accordion-icon" />
+        <span>{title}</span>
+    </label>
+    <div class="accordion-content">
+        <div class={accordionBorder({ variant })}>
+            <Card data-slot="accordionbox">
+                <slot />
+            </Card>
+        </div>
+    </div>
+</div>
+
+<style>
+    .accordion-container {
+        margin: 1rem 0;
+    }
+
+    .accordion-checkbox {
+        display: none;
+    }
+
+    .accordion-container label {
+        position: relative;
+        z-index: 1;
+        display: flex;
+    }
+
+    .accordion-content {
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        margin-top: -5px;
+    }
+
+    .accordion-icon {
+        color: var(--custom-border-color) !important;
+    }
+
+    /* When checkbox is checked, expand content */
+    .accordion-checkbox:checked ~ .accordion-content {
+        max-height: 1000px;
+        opacity: 1;
+    }
+
+    /* Icon visibility based on checkbox state */
+    .accordion-checkbox:checked ~ label .accordion-icon-plus {
+        display: none;
+    }
+
+    .accordion-checkbox:checked ~ label .accordion-icon-minus {
+        display: block;
+    }
+
+    .accordion-checkbox:not(:checked) ~ label .accordion-icon-plus {
+        display: block;
+    }
+
+    .accordion-checkbox:not(:checked) ~ label .accordion-icon-minus {
+        display: none;
+    }
+</style>

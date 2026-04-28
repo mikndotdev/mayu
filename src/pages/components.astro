@@ -5,7 +5,12 @@ import InfoBox from '@/components/blocks/infoBox.astro';
 import ColorBox from '@/components/blocks/colorBox.astro';
 import StickyBox from '@/components/blocks/stickyBox.astro';
 import TabBox from '@/components/blocks/tabBox.astro';
+import ChatBubble from '@/components/blocks/chatBubble.astro';
+import AccordionBox from '@/components/blocks/accordionBox.astro';
 import '../styles/global.css';
+
+import suzuki from "@/assets/gomi/suzuki.png"
+import mur from "@/assets/gomi/mur.png"
 ---
 
 <Layout>
@@ -452,6 +457,160 @@ import '../styles/global.css';
             <TabBox variant="profile">
                 This is a profile tab box with a user icon.
             </TabBox>
+        </section>
+
+        <h1 class="text-4xl font-bold mt-16 mb-8">ChatBubble Component Demo</h1>
+
+        <section>
+            <ChatBubble
+                icon={suzuki.src}
+                iconVariant="rounded"
+                position="left"
+                bubbleVariant="normal"
+            >
+                MURさん夜中腹減んないすか？
+            </ChatBubble>
+        </section>
+
+        <section>
+            <ChatBubble
+                icon={mur.src}
+                iconVariant="rounded"
+                position="right"
+                bubbleVariant="normal"
+            >
+                腹減ったなぁ（時制の不一致）
+            </ChatBubble>
+        </section>
+
+        <section>
+            <ChatBubble
+                icon={suzuki.src}
+                iconVariant="square"
+                position="left"
+                bubbleVariant="flat"
+            >
+                ですよねぇ
+            </ChatBubble>
+        </section>
+
+        <section>
+            <ChatBubble
+                icon={suzuki.src}
+                iconVariant="square"
+                position="left"
+                bubbleVariant="flat"
+            >
+                この辺にぃ、うまいラーメン屋の屋台、来てるらしいっすよ
+            </ChatBubble>
+        </section>
+
+        <section>
+            <ChatBubble
+                icon={mur.src}
+                iconVariant="rounded"
+                position="right"
+                bubbleVariant="line"
+            >
+                あっ、そっかぁ…
+            </ChatBubble>
+        </section>
+
+        <section>
+            <ChatBubble
+                icon={suzuki.src}
+                iconVariant="square"
+                position="left"
+                bubbleVariant="normal"
+            >
+                行きませんか？
+            </ChatBubble>
+        </section>
+
+        <section>
+            <ChatBubble
+                    icon={mur.src}
+                    iconVariant="square"
+                    position="right"
+                    bubbleVariant="flat"
+            >
+                あっ、行きてぇなぁ
+            </ChatBubble>
+        </section>
+
+        <section>
+            <ChatBubble
+                    icon={suzuki.src}
+                    iconVariant="square"
+                    position="left"
+                    bubbleVariant="flat"
+            >
+                行きましょうよ
+            </ChatBubble>
+        </section>
+
+        <section>
+            <ChatBubble
+                    icon={suzuki.src}
+                    iconVariant="rounded"
+                    position="left"
+                    bubbleVariant="normal"
+            >
+                じゃけん夜行きましょうね～
+            </ChatBubble>
+        </section>
+
+        <h1 class="text-4xl font-bold mt-16 mb-8">AccordionBox Component Demo</h1>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Blue Variant</h2>
+            <AccordionBox title="Click to expand" variant="blue">
+                This is the content inside a blue accordion box. You can put any content here, including text, images, or other components.
+            </AccordionBox>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Red Variant (Default Open)</h2>
+            <AccordionBox title="Already Expanded" variant="red" defaultOpen={true}>
+                This accordion starts in an open state because of the defaultOpen prop. It uses the red color variant.
+            </AccordionBox>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Green Variant</h2>
+            <AccordionBox title="More Information" variant="green">
+                <p>The accordion component supports smooth animations when opening and closing.</p>
+                <p class="mt-2">You can include multiple paragraphs and other HTML elements.</p>
+            </AccordionBox>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Twitter Variant (Large Size)</h2>
+            <AccordionBox title="Large Accordion" variant="twitter" size="lg">
+                This accordion uses the Twitter brand color and large size variant. The button automatically inherits all the styling from the button component.
+            </AccordionBox>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Purple Variant (Small Size)</h2>
+            <AccordionBox title="Small Size Demo" variant="purple" size="sm">
+                This is a smaller accordion using the purple color variant. The size prop adjusts the button height and padding.
+            </AccordionBox>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Orange Variant</h2>
+            <AccordionBox title="FAQ Section Example" variant="orange">
+                <strong>Q: How does the accordion work?</strong>
+                <p>A: Click the button to toggle the content visibility. The plus icon changes to a minus icon when expanded.</p>
+            </AccordionBox>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Amber Variant</h2>
+            <AccordionBox title="Multiple Accordions" variant="amber">
+                You can have multiple accordion components on the same page, and each one works independently with its own state.
+            </AccordionBox>
         </section>
     </main>
 </Layout>

@@ -118,7 +118,7 @@ const variantLabel = variant.toUpperCase();
         <Icon name={iconName} class={styles.icon()} />
         <span>{variantLabel}</span>
     </TabBadge>
-    <Card class={styles.card({ class: className })} style="border-top-left-radius: 0;" data-slot="tabbox">
+    <Card class={styles.card({ class: className })} style="border-radius: 0 var(--basic-border-radius) var(--basic-border-radius) var(--basic-border-radius);" data-slot="tabbox">
         <slot />
     </Card>
 </div>
