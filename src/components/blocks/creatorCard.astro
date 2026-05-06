@@ -1,11 +1,11 @@
 ---
 import CreatorCardPrimitive from "@/components/primitives/creatorCard.astro";
-import type { VariantProps } from "tailwind-variants/lite";
-import type { creatorCard } from "@/components/primitives/creatorCard.astro";
+import type { ComponentProps } from "astro/types";
 import creators from "@/creators.json";
 
-interface Props extends VariantProps<typeof creatorCard> {
+interface Props {
     id: string;
+    variant?: ComponentProps<typeof CreatorCardPrimitive>["variant"];
 }
 
 const { id, variant } = Astro.props;
