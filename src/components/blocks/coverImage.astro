@@ -19,9 +19,11 @@ const { imageUrl, tags = [] } = Astro.props;
         {tags.length > 0 && (
             <div class="absolute top-4 left-4 flex flex-wrap gap-2">
                 {tags.map((tag) => (
-                    <Badge>
-                        {tag}
-                    </Badge>
+                    <a href={`/tag/${tag}`} class="no-underline">
+                        <Badge>
+                            {tag}
+                        </Badge>
+                    </a>
                 ))}
             </div>
         )}

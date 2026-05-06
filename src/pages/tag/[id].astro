@@ -1,0 +1,71 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import BlogCard from "@/components/blocks/blogCard.astro";
+import SidebarContent from "@/components/blocks/sidebarContent.astro";
+import MobileMenu from "@/components/navigation/mobileMenu";
+import { Icon } from "astro-icon/components";
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+    const allPosts = await getCollection('blog');
+
+    const uniqueTags = [...new Set(allPosts.flatMap(post => post.data.tags || []))];
+
+    return uniqueTags.map(tag => ({
+        params: { id: tag },
+        props: { tag },
+    }));
+}
+
+const { tag } = Astro.props;
+
+const allPosts = await getCollection('blog');
+const tagPosts = allPosts
+    .filter(post => post.data.tags?.includes(tag))
+    .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const recentPosts = allPosts
+    .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+    .slice(0, 5);
+---
+<Layout
+    title={`Tag: ${tag}`}
+    description={`Posts tagged with ${tag}`}
+    url={Astro.url.pathname}
+>
+<div class="flex flex-row justify-center items-stretch w-full md:w-2/3 min-h-screen mx-auto md:space-x-5 py-5">
+    <div class="w-full md:w-3/4 bg-white px-5 py-10">
+        <div class="flex items-center gap-3 mb-8">
+            <Icon name="fa:tag" class="w-8 h-8 text-(--custom-text-color)" />
+            <h1 class="text-3xl font-bold">{tag}</h1>
+        </div>
+
+        <div class="mb-4 text-(--pallid-text-color)">
+            {tagPosts.length} 件の記事
+        </div>
+
+        {tagPosts.length > 0 ? (
+            <div class="space-y-6">
+                {tagPosts.map((post) => (
+                    <BlogCard url={post.id} />
+                ))}
+            </div>
+        ) : (
+            <p class="text-(--pallid-text-color) text-center py-10">
+                このタグの記事はまだありません。
+            </p>
+        )}
+    </div>
+    <div class="hidden md:block w-1/4 bg-gray-200">
+        <div class="sticky top-5 max-h-[calc(100vh-2.5rem)] overflow-y-auto">
+            <SidebarContent recentPosts={recentPosts} />
+        </div>
+    </div>
+</div>
+
+<div id="mobile-sidebar-content" class="hidden">
+    <SidebarContent recentPosts={recentPosts} />
+</div>
+
+<MobileMenu client:load />
+</Layout>
