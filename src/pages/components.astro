@@ -12,6 +12,7 @@ import NavCardNormal from '@/components/blocks/navCard/normal.astro';
 import NavCardLargeThumbnail from '@/components/blocks/navCard/largeThumbnail.astro';
 import NavCardTitleOverThumbnail from '@/components/blocks/navCard/titleOverThumbnail.astro';
 import CreatorCard from '@/components/blocks/creatorCard.astro';
+import ShareButtons from '@/components/blocks/shareButtons.astro';
 import '../styles/global.css';
 
 import suzuki from "@/assets/gomi/suzuki.png"
@@ -687,6 +688,23 @@ import mur from "@/assets/gomi/mur.png"
         <section>
             <h2 class="text-2xl font-semibold mb-4">Red Variant</h2>
             <CreatorCard id="test" variant="red" />
+        </section>
+
+        <h1 class="text-4xl font-bold mt-16 mb-8">ShareButtons Component Demo</h1>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">All Platforms</h2>
+            <ShareButtons platforms={["twitter", "mastodon", "bluesky", "misskey", "facebook", "threads", "hatebu", "line", "linkedin", "copy"]} />
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Selected Platforms</h2>
+            <ShareButtons platforms={["twitter", "facebook", "line", "copy"]} />
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Minimal Set</h2>
+            <ShareButtons platforms={["twitter", "copy"]} />
         </section>
     </main>
 </Layout>

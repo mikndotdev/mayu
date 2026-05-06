@@ -1,0 +1,131 @@
+---
+import Button from "@/components/primitives/button.astro";
+import { Icon } from "astro-icon/components";
+
+type Platform = "twitter" | "mastodon" | "bluesky" | "misskey" | "facebook" | "threads" | "hatebu" | "line" | "linkedin" | "copy";
+
+interface Props {
+    platforms: Platform[];
+}
+
+const { platforms } = Astro.props;
+
+const platformConfig = {
+    twitter: {
+        icon: "fa7-brands:x-twitter",
+        label: "X",
+    },
+    mastodon: {
+        icon: "fa7-brands:mastodon",
+        label: "Mastodon",
+    },
+    bluesky: {
+        icon: "fa7-solid:cloud",
+        label: "Bluesky",
+    },
+    misskey: {
+        icon: "fa7-solid:cat",
+        label: "Misskey",
+    },
+    facebook: {
+        icon: "fa7-brands:facebook",
+        label: "Facebook",
+    },
+    threads: {
+        icon: "fa7-brands:threads",
+        label: "Threads",
+    },
+    hatebu: {
+        icon: "fa7-solid:bookmark",
+        label: "Hatena",
+    },
+    line: {
+        icon: "fa7-brands:line",
+        label: "LINE",
+    },
+    linkedin: {
+        icon: "fa7-brands:linkedin",
+        label: "LinkedIn",
+    },
+    copy: {
+        icon: "fa7-solid:copy",
+        label: "Copy URL",
+    },
+} as const;
+---
+
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3" data-share-buttons>
+    {platforms.map((platform) => (
+        <Button
+            variant={platform}
+            size="md"
+            data-share-platform={platform}
+            class="w-full"
+        >
+            <Icon name={platformConfig[platform].icon} />
+            <span data-label>{platformConfig[platform].label}</span>
+        </Button>
+    ))}
+</div>
+
+<script>
+    function initShareButtons() {
+        const container = document.querySelector('[data-share-buttons]');
+        if (!container) return;
+
+        const url = window.location.href;
+        const title = document.title;
+        const encodedUrl = encodeURIComponent(url);
+        const encodedTitle = encodeURIComponent(title);
+
+        const shareUrls: Record<string, string> = {
+            twitter: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
+            mastodon: `https://toot.kytta.dev/?text=${encodedTitle}%20${encodedUrl}`,
+            bluesky: `https://bsky.app/intent/compose?text=${encodedTitle}%20${encodedUrl}`,
+            misskey: `https://misskeyshare.link/share.html?text=${encodedTitle}%20${encodedUrl}`,
+            facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+            threads: `https://threads.net/intent/post?text=${encodedTitle}%20${encodedUrl}`,
+            hatebu: `https://b.hatena.ne.jp/entry/${url}`,
+            line: `https://social-plugins.line.me/lineit/share?url=${encodedUrl}`,
+            linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+        };
+
+        const buttons = container.querySelectorAll('[data-share-platform]');
+
+        buttons.forEach((button) => {
+            const platform = button.getAttribute('data-share-platform');
+            if (!platform) return;
+
+            button.addEventListener('click', async (e) => {
+                e.preventDefault();
+
+                if (platform === 'copy') {
+                    try {
+                        await navigator.clipboard.writeText(url);
+                        const label = button.querySelector('[data-label]');
+                        if (label) {
+                            const originalText = label.textContent;
+                            label.textContent = 'Copied!';
+                            setTimeout(() => {
+                                label.textContent = originalText;
+                            }, 2000);
+                        }
+                    } catch (err) {
+                        console.error('Failed to copy:', err);
+                    }
+                } else {
+                    const shareUrl = shareUrls[platform];
+                    if (shareUrl) {
+                        window.open(shareUrl, '_blank', 'width=600,height=400');
+                    }
+                }
+            });
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initShareButtons);
+    } else {
+        initShareButtons();
+    }
+</script>
