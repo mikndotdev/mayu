@@ -16,10 +16,10 @@ const {
 
 const chatBubble = tv({
     slots: {
-        container: "flex gap-4 items-start my-4",
-        icon: "flex-shrink-0 w-[12%] aspect-square border-2 border-[var(--basic-border-color)] overflow-hidden flex items-center justify-center",
+        container: "flex gap-4 items-start my-4 overflow-visible",
+        icon: "flex-shrink-0 w-24 h-24 border-2 border-[var(--basic-border-color)] overflow-hidden flex items-center justify-center",
         iconImage: "w-full h-full object-cover",
-        bubble: "relative flex-1 px-6 py-4 rounded-lg",
+        bubble: "relative flex-1 px-6 py-4 rounded-lg overflow-visible",
     },
     variants: {
         iconVariant: {
@@ -71,7 +71,7 @@ const styles = chatBubble({ iconVariant, position, bubbleVariant });
     </div>
 </div>
 
-<style>
+<style is:global>
     /* Speech bubble pointer - left position */
     .bubble-left.bubble-normal::before {
         content: "";
@@ -83,6 +83,7 @@ const styles = chatBubble({ iconVariant, position, bubbleVariant });
         border-style: solid;
         border-width: 10px 10px 10px 0;
         border-color: transparent var(--custom-border-color) transparent transparent;
+        z-index: 1;
     }
 
     .bubble-left.bubble-normal::after {
@@ -95,6 +96,7 @@ const styles = chatBubble({ iconVariant, position, bubbleVariant });
         border-style: solid;
         border-width: 9px 9px 9px 0;
         border-color: transparent var(--white-color) transparent transparent;
+        z-index: 2;
     }
 
     .bubble-left.bubble-flat::before {
@@ -107,6 +109,7 @@ const styles = chatBubble({ iconVariant, position, bubbleVariant });
         border-style: solid;
         border-width: 10px 10px 10px 0;
         border-color: transparent var(--custom-background-color) transparent transparent;
+        z-index: 1;
     }
 
     .bubble-left.bubble-line::before {
@@ -119,6 +122,7 @@ const styles = chatBubble({ iconVariant, position, bubbleVariant });
         border-style: solid;
         border-width: 10px 10px 10px 0;
         border-color: transparent var(--line-chat-color) transparent transparent;
+        z-index: 1;
     }
 
     /* Speech bubble pointer - right position */
@@ -132,6 +136,7 @@ const styles = chatBubble({ iconVariant, position, bubbleVariant });
         border-style: solid;
         border-width: 10px 0 10px 10px;
         border-color: transparent transparent transparent var(--custom-border-color);
+        z-index: 1;
     }
 
     .bubble-right.bubble-normal::after {
@@ -144,6 +149,7 @@ const styles = chatBubble({ iconVariant, position, bubbleVariant });
         border-style: solid;
         border-width: 9px 0 9px 9px;
         border-color: transparent transparent transparent var(--white-color);
+        z-index: 2;
     }
 
     .bubble-right.bubble-flat::before {
@@ -156,6 +162,7 @@ const styles = chatBubble({ iconVariant, position, bubbleVariant });
         border-style: solid;
         border-width: 10px 0 10px 10px;
         border-color: transparent transparent transparent var(--custom-background-color);
+        z-index: 1;
     }
 
     .bubble-right.bubble-line::before {
@@ -168,5 +175,6 @@ const styles = chatBubble({ iconVariant, position, bubbleVariant });
         border-style: solid;
         border-width: 10px 0 10px 10px;
         border-color: transparent transparent transparent var(--line-chat-color);
+        z-index: 1;
     }
 </style>

@@ -1,4 +1,14 @@
 ---
+import Layout from "@/layouts/Layout.astro"
+
+import ShareButtons from "@/components/blocks/shareButtons.astro";
+import CoverImage from "@/components/blocks/coverImage.astro";
+import NavCardNormal from "@/components/blocks/navCard/normal.astro";
+import TimeToRead from "@/components/blocks/timeToRead.astro";
+import CreatorCard from "@/components/blocks/creatorCard.astro";
+import Search from "astro-pagefind/components/Search";
+import { Icon } from "astro-icon/components";
+
 import { getCollection, render } from 'astro:content';
 export async function getStaticPaths() {
     const posts = await getCollection('blog');
@@ -10,6 +20,44 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+
+const allPosts = await getCollection('blog');
+const recentPosts = allPosts
+    .filter(p => p.id !== post.id)
+    .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+    .slice(0, 5);
 ---
-<h1>{post.data.title}</h1>
-<Content />
+<Layout>
+<div class="flex flex-row justify-center items-stretch w-11/12 md:w-2/3 min-h-screen mx-auto space-x-5 py-5">
+    <div class="w-3/4 bg-white px-5 py-10">
+        <h1 class="text-3xl font-bold mb-4">{post.data.title}</h1>
+        <CoverImage imageUrl={post.data.coverImage} tags={post.data.tags} />
+        <ShareButtons platforms={["twitter", "line", "hatebu", "bluesky", "copy"]} />
+        <div class="flex justify-end items-center gap-2 mt-4 text-(--pallid-text-color)">
+            <Icon name="fa7-solid:clock" class="w-4 h-4" />
+            <span class="text-sm">{post.data.date.toLocaleDateString("ja-JP")}</span>
+        </div>
+        <TimeToRead minutes={post.data.timeToRead} />
+        <div class="markdown-content">
+            <Content/>
+        </div>
+        {post.data.creator && (
+            <div class="mt-8">
+                <CreatorCard id={post.data.creator} variant="blue" />
+            </div>
+        )}
+    </div>
+    <div class="w-1/4 bg-gray-200">
+        <div class="p-5 space-y-3 sticky top-5 max-h-[calc(100vh-2.5rem)] overflow-y-auto">
+            <h2 class="text-xl font-bold mb-4">サイト内検索</h2>
+            <Search className="pagefind-modal" uiOptions={{ showImages: false, pageSize: 3 }}/>
+            <h2 class="text-xl font-bold mb-4">新着記事</h2>
+            <div class="space-y-3">
+                {recentPosts.map((recentPost) => (
+                    <NavCardNormal id={recentPost.id} />
+                ))}
+            </div>
+        </div>
+    </div>
+</div>
+</Layout>

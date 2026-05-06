@@ -1,0 +1,29 @@
+---
+import Badge from "@/components/primitives/badge.astro";
+
+interface Props {
+    imageUrl?: string;
+    tags?: string[];
+}
+
+const { imageUrl, tags = [] } = Astro.props;
+---
+
+{imageUrl && (
+    <div class="relative w-full aspect-video overflow-hidden rounded-(--basic-border-radius) mb-6">
+        <img
+            src={imageUrl}
+            alt="Cover image"
+            class="w-full h-full object-cover"
+        />
+        {tags.length > 0 && (
+            <div class="absolute top-4 left-4 flex flex-wrap gap-2">
+                {tags.map((tag) => (
+                    <Badge>
+                        {tag}
+                    </Badge>
+                ))}
+            </div>
+        )}
+    </div>
+)}

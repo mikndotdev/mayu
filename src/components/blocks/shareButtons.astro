@@ -49,7 +49,7 @@ const platformConfig = {
     },
     copy: {
         icon: "fa7-solid:copy",
-        label: "Copy URL",
+        label: "URLをコピー",
     },
 } as const;
 ---
@@ -105,7 +105,7 @@ const platformConfig = {
                         const label = button.querySelector('[data-label]');
                         if (label) {
                             const originalText = label.textContent;
-                            label.textContent = 'Copied!';
+                            label.textContent = 'コピーしました！';
                             setTimeout(() => {
                                 label.textContent = originalText;
                             }, 2000);

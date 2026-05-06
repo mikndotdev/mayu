@@ -1,0 +1,504 @@
+---
+title: コンポーネントショーケース
+description: Mayuで利用可能なすべてのUIコンポーネントのデモンストレーション
+date: 2026-05-06
+coverImage: https://picsum.photos/1920/1080
+tags: [components, showcase, ui, demo]
+timeToRead: 15
+---
+
+import IconBox from "@/components/blocks/iconBox.astro";
+import InfoBox from "@/components/blocks/infoBox.astro";
+import ColorBox from "@/components/blocks/colorBox.astro";
+import StickyBox from "@/components/blocks/stickyBox.astro";
+import TabBox from "@/components/blocks/tabBox.astro";
+import ChatBubble from "@/components/blocks/chatBubble.astro";
+import AccordionBox from "@/components/blocks/accordionBox.astro";
+import BlogCard from "@/components/blocks/blogCard.astro";
+import NavCardNormal from "@/components/blocks/navCard/normal.astro";
+import NavCardLargeThumbnail from "@/components/blocks/navCard/largeThumbnail.astro";
+import NavCardTitleOverThumbnail from "@/components/blocks/navCard/titleOverThumbnail.astro";
+import CreatorCard from "@/components/blocks/creatorCard.astro";
+import ShareButtons from "@/components/blocks/shareButtons.astro";
+
+import suzuki from "@/assets/gomi/suzuki.png";
+import mur from "@/assets/gomi/mur.png";
+
+# IconBoxコンポーネントのデモ
+
+## 情報
+
+<IconBox variant="information">
+  これは情報ボックスです。読者にとって重要な情報やヒントを強調表示するために使用します。
+</IconBox>
+
+## 質問
+
+<IconBox variant="question">
+  これは質問ボックスです。質問を提起したり、説明が必要なポイントを強調したりするために使用します。
+</IconBox>
+
+## 警告
+
+<IconBox variant="alert">
+  これは警告ボックスです。重要な問題や潜在的な問題について読者に警告するために使用します。
+</IconBox>
+
+## メモ
+
+<IconBox variant="memo">
+  これはメモボックスです。メモ、リマインダー、または一般的な覚書に使用します。
+</IconBox>
+
+## コメント
+
+<IconBox variant="comment">
+  これはコメントボックスです。編集者のコメントや追加の考えを追加するために使用します。
+</IconBox>
+
+## OK
+
+<IconBox variant="ok">
+  これはOKボックスです。承認された情報や正しい情報を示すために使用します。
+</IconBox>
+
+## NG（良くない）
+
+<IconBox variant="ng">
+  これはNGボックスです。不正確または不承認の情報を示すために使用します。
+</IconBox>
+
+## 良い
+
+<IconBox variant="good">
+  これは良いボックスです。肯定的な側面や利点を強調するために使用します。
+</IconBox>
+
+## 悪い
+
+<IconBox variant="bad">
+  これは悪いボックスです。否定的な側面や欠点を強調するために使用します。
+</IconBox>
+
+## プロフィール
+
+<IconBox variant="profile">
+  これはプロフィールボックスです。ユーザープロフィール、著者情報、または伝記コンテンツを表示するために使用します。
+</IconBox>
+
+# InfoBoxコンポーネントのデモ
+
+## プライマリ
+
+<InfoBox variant="primary">これはプライマリ情報ボックスです。重要な主要情報に使用します。</InfoBox>
+
+## 成功
+
+<InfoBox variant="success">
+  これは成功情報ボックスです。成功した操作や肯定的な結果を示すために使用します。
+</InfoBox>
+
+## 情報
+
+<InfoBox variant="info">これは情報ボックスです。一般的な情報メッセージに使用します。</InfoBox>
+
+## 警告
+
+<InfoBox variant="warning">
+  これは警告情報ボックスです。潜在的な問題についてユーザーに警告するために使用します。
+</InfoBox>
+
+## 危険
+
+<InfoBox variant="danger">
+  これは危険情報ボックスです。危険な操作や重大なエラーを強調するために使用します。
+</InfoBox>
+
+## セカンダリ
+
+<InfoBox variant="secondary">
+  これはセカンダリ情報ボックスです。二次的またはあまり目立たない情報に使用します。
+</InfoBox>
+
+## ライト
+
+<InfoBox variant="light">
+  これはライト情報ボックスです。控えめで明るい色の通知に使用します。
+</InfoBox>
+
+## ダーク
+
+<InfoBox variant="dark">これはダーク情報ボックスです。暗いテーマのメッセージに使用します。</InfoBox>
+
+# ColorBoxコンポーネントのデモ
+
+## 赤
+
+<ColorBox variant="red">これは3pxのボーダーで背景なしの赤いカラーボックスです。</ColorBox>
+
+## ピンク
+
+<ColorBox variant="pink">これは3pxのボーダーで背景なしのピンクのカラーボックスです。</ColorBox>
+
+## 紫
+
+<ColorBox variant="purple">これは3pxのボーダーで背景なしの紫のカラーボックスです。</ColorBox>
+
+## ディープ
+
+<ColorBox variant="deep">これは3pxのボーダーで背景なしのディープカラーボックスです。</ColorBox>
+
+## インディゴ
+
+<ColorBox variant="indigo">
+  これは3pxのボーダーで背景なしのインディゴのカラーボックスです。
+</ColorBox>
+
+## 青
+
+<ColorBox variant="blue">これは3pxのボーダーで背景なしの青いカラーボックスです。</ColorBox>
+
+## ライトブルー
+
+<ColorBox variant="light-blue">
+  これは3pxのボーダーで背景なしのライトブルーのカラーボックスです。
+</ColorBox>
+
+## シアン
+
+<ColorBox variant="cyan">これは3pxのボーダーで背景なしのシアンのカラーボックスです。</ColorBox>
+
+## ティール
+
+<ColorBox variant="teal">これは3pxのボーダーで背景なしのティールのカラーボックスです。</ColorBox>
+
+## 緑
+
+<ColorBox variant="green">これは3pxのボーダーで背景なしの緑のカラーボックスです。</ColorBox>
+
+## ライトグリーン
+
+<ColorBox variant="light-green">
+  これは3pxのボーダーで背景なしのライトグリーンのカラーボックスです。
+</ColorBox>
+
+## ライム
+
+<ColorBox variant="lime">これは3pxのボーダーで背景なしのライムのカラーボックスです。</ColorBox>
+
+## 黄色
+
+<ColorBox variant="yellow">これは3pxのボーダーで背景なしの黄色のカラーボックスです。</ColorBox>
+
+## アンバー
+
+<ColorBox variant="amber">これは3pxのボーダーで背景なしのアンバーのカラーボックスです。</ColorBox>
+
+## オレンジ
+
+<ColorBox variant="orange">これは3pxのボーダーで背景なしのオレンジのカラーボックスです。</ColorBox>
+
+## ディープオレンジ
+
+<ColorBox variant="deep-orange">
+  これは3pxのボーダーで背景なしのディープオレンジのカラーボックスです。
+</ColorBox>
+
+## ブラウン
+
+<ColorBox variant="brown">これは3pxのボーダーで背景なしのブラウンのカラーボックスです。</ColorBox>
+
+## ライトグレー
+
+<ColorBox variant="light-grey">
+  これは3pxのボーダーで背景なしのライトグレーのカラーボックスです。
+</ColorBox>
+
+## グレー
+
+<ColorBox variant="grey">これは3pxのボーダーで背景なしのグレーのカラーボックスです。</ColorBox>
+
+## ダークグレー
+
+<ColorBox variant="dark-grey">
+  これは3pxのボーダーで背景なしのダークグレーのカラーボックスです。
+</ColorBox>
+
+## ブルーグレー
+
+<ColorBox variant="blue-gray">
+  これは3pxのボーダーで背景なしのブルーグレーのカラーボックスです。
+</ColorBox>
+
+## 黒
+
+<ColorBox variant="black">これは3pxのボーダーで背景なしの黒のカラーボックスです。</ColorBox>
+
+## 白
+
+<ColorBox variant="white">これは3pxのボーダーで背景なしの白のカラーボックスです。</ColorBox>
+
+# StickyBoxコンポーネントのデモ
+
+## 黄色
+
+<StickyBox variant="yellow">
+  これは6pxの左ボーダー付きの黄色い付箋スタイルのボックスです。
+</StickyBox>
+
+## 赤
+
+<StickyBox variant="red">これは6pxの左ボーダー付きの赤い付箋スタイルのボックスです。</StickyBox>
+
+## 青
+
+<StickyBox variant="blue">これは6pxの左ボーダー付きの青い付箋スタイルのボックスです。</StickyBox>
+
+## 緑
+
+<StickyBox variant="green">これは6pxの左ボーダー付きの緑の付箋スタイルのボックスです。</StickyBox>
+
+## グレー
+
+<StickyBox variant="gray">
+  これは6pxの左ボーダー付きのグレーの付箋スタイルのボックスです。
+</StickyBox>
+
+# TabBoxコンポーネントのデモ
+
+## チェック
+
+<TabBox variant="check">これはチェックマークアイコン付きのチェックタブボックスです。</TabBox>
+
+## コメント
+
+<TabBox variant="comment">これは吹き出しアイコン付きのコメントタブボックスです。</TabBox>
+
+## ポイント
+
+<TabBox variant="point">これは電球アイコン付きのポイントタブボックスです。</TabBox>
+
+## ヒント
+
+<TabBox variant="tips">これは卒業帽アイコン付きのヒントタブボックスです。</TabBox>
+
+## ヒント
+
+<TabBox variant="hint">これはベルアイコン付きのヒントタブボックスです。</TabBox>
+
+## ピックアップ
+
+<TabBox variant="pickup">これは星アイコン付きのピックアップタブボックスです。</TabBox>
+
+## ブックマーク
+
+<TabBox variant="bookmark">これはブックマークアイコン付きのブックマークタブボックスです。</TabBox>
+
+## メモ
+
+<TabBox variant="memo">これはメモアイコン付きのメモタブボックスです。</TabBox>
+
+## ダウンロード
+
+<TabBox variant="download">これはダウンロードアイコン付きのダウンロードタブボックスです。</TabBox>
+
+## ブレイク
+
+<TabBox variant="break">これはコーヒーカップアイコン付きのブレイクタブボックスです。</TabBox>
+
+## Amazon
+
+<TabBox variant="amazon">これはAmazonロゴアイコン付きのAmazonタブボックスです。</TabBox>
+
+## OK
+
+<TabBox variant="ok">これは丸アイコン付きのOKタブボックスです。</TabBox>
+
+## NG
+
+<TabBox variant="ng">これはバツ印アイコン付きのNGタブボックスです。</TabBox>
+
+## 良い
+
+<TabBox variant="good">これは親指を立てたアイコン付きの良いタブボックスです。</TabBox>
+
+## 悪い
+
+<TabBox variant="bad">これは親指を下げたアイコン付きの悪いタブボックスです。</TabBox>
+
+## プロフィール
+
+<TabBox variant="profile">これはユーザーアイコン付きのプロフィールタブボックスです。</TabBox>
+
+# ChatBubbleコンポーネントのデモ
+
+<ChatBubble icon={suzuki.src} iconVariant="rounded" position="left" bubbleVariant="normal">
+  MURさん夜中腹減んないすか？
+</ChatBubble>
+
+<ChatBubble icon={mur.src} iconVariant="rounded" position="right" bubbleVariant="normal">
+  腹減ったなぁ（時制の不一致）
+</ChatBubble>
+
+<ChatBubble icon={suzuki.src} iconVariant="square" position="left" bubbleVariant="flat">
+  ですよねぇ
+</ChatBubble>
+
+<ChatBubble icon={suzuki.src} iconVariant="square" position="left" bubbleVariant="flat">
+  この辺にぃ、うまいラーメン屋の屋台、来てるらしいっすよ
+</ChatBubble>
+
+<ChatBubble icon={mur.src} iconVariant="rounded" position="right" bubbleVariant="line">
+  あっ、そっかぁ…
+</ChatBubble>
+
+<ChatBubble icon={suzuki.src} iconVariant="square" position="left" bubbleVariant="normal">
+  行きませんか？
+</ChatBubble>
+
+<ChatBubble icon={mur.src} iconVariant="square" position="right" bubbleVariant="flat">
+  あっ、行きてぇなぁ
+</ChatBubble>
+
+<ChatBubble icon={suzuki.src} iconVariant="square" position="left" bubbleVariant="flat">
+  行きましょうよ
+</ChatBubble>
+
+<ChatBubble icon={suzuki.src} iconVariant="rounded" position="left" bubbleVariant="normal">
+  じゃけん夜行きましょうね～
+</ChatBubble>
+
+# AccordionBoxコンポーネントのデモ
+
+## 青バリアント
+
+<AccordionBox title="クリックして展開" variant="blue">
+  これは青いアコーディオンボックス内のコンテンツです。テキスト、画像、その他のコンポーネントを含むあらゆるコンテンツをここに配置できます。
+</AccordionBox>
+
+## 赤バリアント（デフォルトで開く）
+
+<AccordionBox title="既に展開済み" variant="red" defaultOpen={true}>
+  このアコーディオンはdefaultOpenプロップのおかげで開いた状態で始まります。赤色のバリアントを使用しています。
+</AccordionBox>
+
+## 緑バリアント
+
+<AccordionBox title="詳細情報" variant="green">
+アコーディオンコンポーネントは、開閉時にスムーズなアニメーションをサポートしています。
+
+複数の段落や他のHTML要素を含めることができます。
+
+</AccordionBox>
+
+## Twitterバリアント（大サイズ）
+
+<AccordionBox title="大きなアコーディオン" variant="twitter" size="lg">
+  このアコーディオンはTwitterブランドカラーと大サイズバリアントを使用しています。ボタンは自動的にボタンコンポーネントからすべてのスタイリングを継承します。
+</AccordionBox>
+
+## 紫バリアント（小サイズ）
+
+<AccordionBox title="小サイズデモ" variant="purple" size="sm">
+  これは紫色のバリアントを使用した小さなアコーディオンです。sizeプロップはボタンの高さとパディングを調整します。
+</AccordionBox>
+
+## オレンジバリアント
+
+<AccordionBox title="FAQセクションの例" variant="orange">
+**Q: アコーディオンはどのように機能しますか？**
+
+A: ボタンをクリックしてコンテンツの表示を切り替えます。展開されると、プラスアイコンがマイナスアイコンに変わります。
+
+</AccordionBox>
+
+## アンバーバリアント
+
+<AccordionBox title="複数のアコーディオン" variant="amber">
+  同じページに複数のアコーディオンコンポーネントを配置でき、それぞれが独自の状態で独立して動作します。
+</AccordionBox>
+
+# BlogCardコンポーネントのデモ
+
+## 内部ブログ記事
+
+<BlogCard url="test" />
+
+## バッジ付き内部ブログ記事
+
+<BlogCard url="test" badgeTitle="注目" badgeIcon="fa7-solid:star" />
+
+## 外部URL（Astroブログ）
+
+<BlogCard url="https://astro.build/blog/" />
+
+## バッジ付き外部URL
+
+<BlogCard url="https://astro.build/blog/" badgeTitle="外部" badgeIcon="fa7-solid:globe" />
+
+# NavCardコンポーネントのデモ
+
+## ノーマルバリアント
+
+<NavCardNormal id="test" />
+
+## 大サムネイルバリアント
+
+<NavCardLargeThumbnail id="test" />
+
+## サムネイル上にタイトルバリアント
+
+<NavCardTitleOverThumbnail id="test" />
+
+# CreatorCardコンポーネントのデモ
+
+## デフォルトバリアント
+
+<CreatorCard id="test" />
+
+## 青バリアント
+
+<CreatorCard id="test" variant="blue" />
+
+## 紫バリアント
+
+<CreatorCard id="test" variant="purple" />
+
+## 緑バリアント
+
+<CreatorCard id="test" variant="green" />
+
+## オレンジバリアント
+
+<CreatorCard id="test" variant="orange" />
+
+## 赤バリアント
+
+<CreatorCard id="test" variant="red" />
+
+# ShareButtonsコンポーネントのデモ
+
+## すべてのプラットフォーム
+
+<ShareButtons
+  platforms={[
+    "twitter",
+    "mastodon",
+    "bluesky",
+    "misskey",
+    "facebook",
+    "threads",
+    "hatebu",
+    "line",
+    "linkedin",
+    "copy",
+  ]}
+/>
+
+## 選択されたプラットフォーム
+
+<ShareButtons platforms={["twitter", "facebook", "line", "copy"]} />
+
+## 最小セット
+
+<ShareButtons platforms={["twitter", "copy"]} />

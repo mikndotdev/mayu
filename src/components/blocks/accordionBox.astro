@@ -146,23 +146,20 @@ const accordionBorder = tv({
 });
 ---
 
-<div class={`accordion-container ${className || ""}`}>
-    <input
-        type="checkbox"
-        id={accordionId}
-        class="accordion-checkbox"
-        checked={defaultOpen}
-    />
-    <label
-        for={accordionId}
-        class={button({ variant, size })}
-        style="width: 100%; justify-content: center; cursor: pointer;"
+<div class={`my-4 ${className || ""}`} data-accordion-id={accordionId}>
+    <button
+        type="button"
+        class={`${button({ variant, size })} w-full justify-center cursor-pointer`}
+        data-accordion-button={accordionId}
+        data-open={defaultOpen.toString()}
     >
-        <Icon name="fa:plus" class="accordion-icon-plus accordion-icon" />
-        <Icon name="fa:minus" class="accordion-icon-minus accordion-icon" />
+        <span class="relative inline-flex w-[1em] h-[1em] mr-2">
+            <Icon name="fa:plus" class="accordion-icon-plus accordion-icon" />
+            <Icon name="fa:minus" class="accordion-icon-minus accordion-icon" />
+        </span>
         <span>{title}</span>
-    </label>
-    <div class="accordion-content">
+    </button>
+    <div class="accordion-content overflow-hidden -mt-1" data-accordion-content={accordionId} data-open={defaultOpen.toString()}>
         <div class={accordionBorder({ variant })}>
             <Card data-slot="accordionbox">
                 <slot />
@@ -171,53 +168,85 @@ const accordionBorder = tv({
     </div>
 </div>
 
+<script>
+    function initAccordion() {
+        const accordions = document.querySelectorAll('[data-accordion-button]');
+
+        accordions.forEach((button) => {
+            const accordionId = button.getAttribute('data-accordion-button');
+            const content = document.querySelector(`[data-accordion-content="${accordionId}"]`) as HTMLElement;
+            const plusIcon = button.querySelector('.accordion-icon-plus') as HTMLElement;
+            const minusIcon = button.querySelector('.accordion-icon-minus') as HTMLElement;
+
+            if (!content || !plusIcon || !minusIcon) return;
+
+            // Set initial state
+            const isOpen = button.getAttribute('data-open') === 'true';
+            if (isOpen) {
+                content.style.maxHeight = content.scrollHeight + 'px';
+                content.style.opacity = '1';
+                plusIcon.style.display = 'none';
+                minusIcon.style.display = 'block';
+            } else {
+                content.style.maxHeight = '0';
+                content.style.opacity = '0';
+                plusIcon.style.display = 'block';
+                minusIcon.style.display = 'none';
+            }
+
+            // Toggle on click
+            button.addEventListener('click', () => {
+                const currentlyOpen = button.getAttribute('data-open') === 'true';
+
+                if (currentlyOpen) {
+                    // Close
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    // Force reflow
+                    content.offsetHeight;
+                    content.style.maxHeight = '0';
+                    content.style.opacity = '0';
+                    plusIcon.style.display = 'block';
+                    minusIcon.style.display = 'none';
+                    button.setAttribute('data-open', 'false');
+                } else {
+                    // Open
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    content.style.opacity = '1';
+                    plusIcon.style.display = 'none';
+                    minusIcon.style.display = 'block';
+                    button.setAttribute('data-open', 'true');
+                }
+            });
+        });
+    }
+
+    // Initialize on page load
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAccordion);
+    } else {
+        initAccordion();
+    }
+
+    // Re-initialize when content changes (for dynamic content)
+    document.addEventListener('astro:after-swap', initAccordion);
+</script>
+
 <style>
-    .accordion-container {
-        margin: 1rem 0;
-    }
-
-    .accordion-checkbox {
-        display: none;
-    }
-
-    .accordion-container label {
-        position: relative;
-        z-index: 1;
-        display: flex;
-    }
-
     .accordion-content {
-        overflow: hidden;
         max-height: 0;
         opacity: 0;
         transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
-        margin-top: -5px;
     }
 
     .accordion-icon {
         color: var(--custom-border-color) !important;
     }
 
-    /* When checkbox is checked, expand content */
-    .accordion-checkbox:checked ~ .accordion-content {
-        max-height: 1000px;
-        opacity: 1;
-    }
-
-    /* Icon visibility based on checkbox state */
-    .accordion-checkbox:checked ~ label .accordion-icon-plus {
-        display: none;
-    }
-
-    .accordion-checkbox:checked ~ label .accordion-icon-minus {
-        display: block;
-    }
-
-    .accordion-checkbox:not(:checked) ~ label .accordion-icon-plus {
-        display: block;
-    }
-
-    .accordion-checkbox:not(:checked) ~ label .accordion-icon-minus {
-        display: none;
+    .accordion-icon-plus,
+    .accordion-icon-minus {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
     }
 </style>

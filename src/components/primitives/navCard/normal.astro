@@ -13,8 +13,8 @@ const { url, title, description, coverImage } = Astro.props;
 
 <a href={url} class="no-underline text-inherit block">
     <Card class="relative border border-(--thin-color) hover:shadow-lg transition-shadow">
-        <div class="grid grid-cols-[160px_1fr] gap-6 items-start">
-            <div class="w-40 aspect-video overflow-hidden rounded-(--basic-border-radius)">
+        <div class="grid grid-cols-[1fr_2fr] gap-3 items-start">
+            <div class="w-full aspect-video overflow-hidden rounded-(--basic-border-radius)">
                 {coverImage ? (
                     <img
                         src={coverImage}
@@ -28,12 +28,12 @@ const { url, title, description, coverImage } = Astro.props;
                 )}
             </div>
 
-            <div class="flex flex-col gap-3">
-                <h3 class="m-0 text-xl font-bold leading-snug">
+            <div class="flex flex-col gap-2">
+                <h3 class="m-0 text-sm font-bold leading-tight">
                     {title}
                 </h3>
                 {description && (
-                    <p class="m-0 text-(--pallid-text-color) leading-relaxed">
+                    <p class="m-0 text-(--pallid-text-color) text-xs leading-snug line-clamp-2">
                         {description}
                     </p>
                 )}

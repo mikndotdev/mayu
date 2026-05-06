@@ -1,0 +1,20 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+    minutes?: number;
+}
+
+const { minutes } = Astro.props;
+---
+
+{minutes && (
+    <div class="my-4">
+        <hr class="border-t border-(--thin-color)" />
+        <div class="flex items-center justify-center gap-2 my-3 text-(--pallid-text-color)">
+            <Icon name="fa7-solid:hourglass-half" class="w-4 h-4" />
+            <span class="text-sm">この記事は約{minutes}分で読めます。</span>
+        </div>
+        <hr class="border-t border-(--thin-color)" />
+    </div>
+)}
