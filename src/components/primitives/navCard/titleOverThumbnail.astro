@@ -26,12 +26,12 @@ const { url, title, description, coverImage } = Astro.props;
                 </div>
             )}
 
-            <div class="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/80 to-transparent p-6 flex flex-col gap-2">
-                <h3 class="m-0 text-xl font-bold leading-snug text-white">
+            <div class="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/80 to-transparent p-4 md:p-6 flex flex-col gap-1 md:gap-2">
+                <h3 class="m-0 text-lg md:text-xl font-bold leading-snug text-white">
                     {title}
                 </h3>
                 {description && (
-                    <p class="m-0 text-white/90 leading-relaxed">
+                    <p class="m-0 text-white/90 text-sm md:text-base leading-relaxed">
                         {description}
                     </p>
                 )}

@@ -1,6 +1,46 @@
 ---
 import "@/styles/global.css"
 import { Font } from "astro:assets"
+
+import Footer from "@/components/navigation/footer.astro"
+import Header from "@/components/navigation/header"
+
+import logo from "@/assets/img/mikandevlogo.png"
+import mayuLogo from "@/assets/img/mayu.png"
+
+interface Props {
+	title?: string;
+	description?: string;
+	image?: string;
+	url?: string;
+}
+
+const {
+	title = "Untitled Page",
+	description,
+	image,
+	url
+} = Astro.props;
+
+const canonicalURL = url && Astro.site ? new URL(url, Astro.site).href : Astro.url.href;
+const absoluteImage = image && Astro.site ? new URL(image, Astro.site).href : image;
+
+const headerMenu = [
+	{
+		topLink: { title: "Home", url: "/" }
+	},
+	{
+		topLink: { title: "Blog", url: "/blog" },
+		links: [
+			{ title: "All Posts", url: "/blog" },
+			{ title: "Categories", url: "/categories" },
+			{ title: "Tags", url: "/tags" }
+		]
+	},
+	{
+		topLink: { title: "About", url: "/about" }
+	}
+];
 ---
 
 <!doctype html>
@@ -12,10 +52,30 @@ import { Font } from "astro:assets"
 		<link rel="icon" href="/favicon.ico" />
 		<Font cssVariable="--font-noto-sans-jp"/>
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title}</title>
+
+		{description && <meta name="description" content={description} />}
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:title" content={title} />
+		{description && <meta property="og:description" content={description} />}
+		{absoluteImage && <meta property="og:image" content={absoluteImage} />}
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={canonicalURL} />
+		<meta property="twitter:title" content={title} />
+		{description && <meta property="twitter:description" content={description} />}
+		{absoluteImage && <meta property="twitter:image" content={absoluteImage} />}
 	</head>
 	<body>
-		<slot />
+		<Header client:load topTitle="Astro無料テーマ" image={mayuLogo.src} menu={headerMenu} />
+		<main class="pt-5">
+			<slot />
+		</main>
+		<Footer copyright={`© ${new Date().getFullYear()} MikanDev`} image={logo.src} links={[{ title: "GitHub", href: "https://github.com/mikndotdev/mayu" }]}/>
 	</body>
 </html>
 

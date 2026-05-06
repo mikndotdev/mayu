@@ -1,0 +1,22 @@
+---
+import NavCardNormal from "@/components/blocks/navCard/normal.astro";
+import Search from "astro-pagefind/components/Search";
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+    recentPosts: CollectionEntry<'blog'>[];
+}
+
+const { recentPosts } = Astro.props;
+---
+
+<div class="p-5 space-y-3">
+    <h2 class="text-xl font-bold mb-4">サイト内検索</h2>
+    <Search className="pagefind-modal" uiOptions={{ showImages: false, pageSize: 3 }}/>
+    <h2 class="text-xl font-bold mb-4">新着記事</h2>
+    <div class="space-y-3">
+        {recentPosts.map((recentPost) => (
+            <NavCardNormal id={recentPost.id} />
+        ))}
+    </div>
+</div>

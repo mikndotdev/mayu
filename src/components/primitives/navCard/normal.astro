@@ -13,7 +13,7 @@ const { url, title, description, coverImage } = Astro.props;
 
 <a href={url} class="no-underline text-inherit block">
     <Card class="relative border border-(--thin-color) hover:shadow-lg transition-shadow">
-        <div class="grid grid-cols-[1fr_2fr] gap-3 items-start">
+        <div class="grid grid-cols-1 sm:grid-cols-[1fr_2fr] gap-3 items-start">
             <div class="w-full aspect-video overflow-hidden rounded-(--basic-border-radius)">
                 {coverImage ? (
                     <img

@@ -133,8 +133,8 @@ const styles = creatorCard({ variant });
 ---
 
 <Card class={styles.container({ class: className })}>
-    <div class="grid grid-cols-[100px_1fr] gap-6 items-start">
-        <div class="w-[100px] h-[100px] overflow-hidden rounded-(--basic-border-radius)">
+    <div class="grid grid-cols-1 sm:grid-cols-[80px_1fr] md:grid-cols-[100px_1fr] gap-3 sm:gap-4 md:gap-6 items-start justify-items-center sm:justify-items-start">
+        <div class="w-20 h-20 sm:w-20 sm:h-20 md:w-[100px] md:h-[100px] overflow-hidden rounded-(--basic-border-radius)">
             {avatar ? (
                 <img
                     src={avatar}
@@ -148,19 +148,19 @@ const styles = creatorCard({ variant });
             )}
         </div>
 
-        <div class="flex flex-col gap-3">
+        <div class="flex flex-col gap-2 md:gap-3 text-center sm:text-left">
             <a href={`/creator/${id}`} class="no-underline hover:underline">
-                <h3 class="m-0 text-xl font-bold leading-snug text-[#0066cc] transition-colors">
+                <h3 class="m-0 text-lg md:text-xl font-bold leading-snug text-[#0066cc] transition-colors">
                     {name}
                 </h3>
             </a>
             {description && (
-                <p class="m-0 text-(--pallid-text-color) leading-relaxed">
+                <p class="m-0 text-(--pallid-text-color) text-sm md:text-base leading-relaxed">
                     {description}
                 </p>
             )}
             {socials && socials.length > 0 && (
-                <div class="flex gap-2 mt-2">
+                <div class="flex gap-2 mt-2 justify-center sm:justify-start">
                     {socials.map((social) => (
                         <a
                             href={social.url}

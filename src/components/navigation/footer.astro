@@ -1,0 +1,35 @@
+---
+interface FooterLink {
+    title: string
+    href: string
+}
+
+interface Props {
+    image: string
+    copyright: string
+    links: FooterLink[]
+}
+
+const { image, copyright, links } = Astro.props;
+---
+
+<footer class="bg-white mt-5 items-center justify-center">
+        <div class="flex flex-col md:flex-row justify-center md:justify-between items-center mx-auto w-11/12 md:w-2/3">
+        <img src={image} alt="Footer Image" class="w-24 h-24 object-contain mb-4 md:mb-0" />
+            <div class="flex flex-col items-center md:items-end justify-center">
+        <p class="text-md text-center md:text-right">{copyright}</p>
+        <div class="flex flex-wrap justify-center md:justify-end mt-2 border-x border-gray-400">
+            {links.map((link, index) => (
+                <>
+                    <a href={link.href} class="text-md hover:underline px-3">
+                        {link.title}
+                    </a>
+                    {index < links.length - 1 && (
+                        <span class="border-r border-gray-400"></span>
+                    )}
+                </>
+            ))}
+        </div>
+            </div>
+        </div>
+</footer>
