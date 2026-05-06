@@ -7,6 +7,11 @@ import StickyBox from '@/components/blocks/stickyBox.astro';
 import TabBox from '@/components/blocks/tabBox.astro';
 import ChatBubble from '@/components/blocks/chatBubble.astro';
 import AccordionBox from '@/components/blocks/accordionBox.astro';
+import BlogCard from '@/components/blocks/blogCard.astro';
+import NavCardNormal from '@/components/blocks/navCard/normal.astro';
+import NavCardLargeThumbnail from '@/components/blocks/navCard/largeThumbnail.astro';
+import NavCardTitleOverThumbnail from '@/components/blocks/navCard/titleOverThumbnail.astro';
+import CreatorCard from '@/components/blocks/creatorCard.astro';
 import '../styles/global.css';
 
 import suzuki from "@/assets/gomi/suzuki.png"
@@ -611,6 +616,77 @@ import mur from "@/assets/gomi/mur.png"
             <AccordionBox title="Multiple Accordions" variant="amber">
                 You can have multiple accordion components on the same page, and each one works independently with its own state.
             </AccordionBox>
+        </section>
+
+        <h1 class="text-4xl font-bold mt-16 mb-8">BlogCard Component Demo</h1>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Internal Blog Post</h2>
+            <BlogCard url="test" />
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Internal Blog Post with Badge</h2>
+            <BlogCard url="test" badgeTitle="Featured" badgeIcon="fa7-solid:star" />
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">External URL (Astro Blog)</h2>
+            <BlogCard url="https://astro.build/blog/" />
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">External URL with Badge</h2>
+            <BlogCard url="https://astro.build/blog/" badgeTitle="External" badgeIcon="fa7-solid:globe" />
+        </section>
+
+        <h1 class="text-4xl font-bold mt-16 mb-8">NavCard Component Demo</h1>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Normal Variant</h2>
+            <NavCardNormal id="test" />
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Large Thumbnail Variant</h2>
+            <NavCardLargeThumbnail id="test" />
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Title Over Thumbnail Variant</h2>
+            <NavCardTitleOverThumbnail id="test" />
+        </section>
+
+        <h1 class="text-4xl font-bold mt-16 mb-8">CreatorCard Component Demo</h1>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Default Variant</h2>
+            <CreatorCard id="test" />
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Blue Variant</h2>
+            <CreatorCard id="test" variant="blue" />
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Purple Variant</h2>
+            <CreatorCard id="test" variant="purple" />
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Green Variant</h2>
+            <CreatorCard id="test" variant="green" />
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Orange Variant</h2>
+            <CreatorCard id="test" variant="orange" />
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Red Variant</h2>
+            <CreatorCard id="test" variant="red" />
         </section>
     </main>
 </Layout>

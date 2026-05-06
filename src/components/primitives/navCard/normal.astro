@@ -1,0 +1,43 @@
+---
+import Card from "@/components/primitives/card.astro";
+
+interface Props {
+    url: string;
+    title: string;
+    description?: string;
+    coverImage?: string;
+}
+
+const { url, title, description, coverImage } = Astro.props;
+---
+
+<a href={url} class="no-underline text-inherit block">
+    <Card class="relative border border-(--thin-color) hover:shadow-lg transition-shadow">
+        <div class="grid grid-cols-[160px_1fr] gap-6 items-start">
+            <div class="w-40 aspect-video overflow-hidden rounded-(--basic-border-radius)">
+                {coverImage ? (
+                    <img
+                        src={coverImage}
+                        alt={title}
+                        class="w-full h-full object-cover"
+                    />
+                ) : (
+                    <div class="w-full h-full bg-[#ddd] flex items-center justify-center text-[#999] font-bold text-sm">
+                        NO IMAGE
+                    </div>
+                )}
+            </div>
+
+            <div class="flex flex-col gap-3">
+                <h3 class="m-0 text-xl font-bold leading-snug">
+                    {title}
+                </h3>
+                {description && (
+                    <p class="m-0 text-(--pallid-text-color) leading-relaxed">
+                        {description}
+                    </p>
+                )}
+            </div>
+        </div>
+    </Card>
+</a>

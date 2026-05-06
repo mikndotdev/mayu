@@ -1,0 +1,33 @@
+---
+import NavCardTitleOverThumbnail from "@/components/primitives/navCard/titleOverThumbnail.astro";
+import { getEntry } from "astro:content";
+
+interface Props {
+    id: string;
+}
+
+const { id } = Astro.props;
+
+let entry;
+try {
+    entry = await getEntry("blog", id);
+} catch (error) {
+    entry = null;
+}
+
+if (!entry) {
+    throw new Error(`Blog post with id "${id}" not found`);
+}
+
+const title = entry.data.title;
+const description = entry.data.description;
+const coverImage = entry.data.coverImage;
+const url = `/${id}`;
+---
+
+<NavCardTitleOverThumbnail
+    url={url}
+    title={title}
+    description={description}
+    coverImage={coverImage}
+/>

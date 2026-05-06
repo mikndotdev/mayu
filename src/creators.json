@@ -1,0 +1,14 @@
+[
+  {
+    "id": "test",
+    "name": "Test Creator",
+    "description": "This is a test creator.",
+    "avatar": "https://picsum.photos/800/800",
+    "socials": [
+      {
+        "icon": "fa:twitter",
+        "url": "https://twitter.com/testcreator"
+      }
+    ]
+  }
+]

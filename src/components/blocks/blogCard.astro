@@ -1,0 +1,113 @@
+---
+import Card from "@/components/primitives/card.astro";
+import TabBadge from "@/components/primitives/tabBadge.astro";
+import { Icon } from "astro-icon/components";
+import { getEntry } from "astro:content";
+import { fetchExternalMetadata } from "@/lib/fetchUrlData";
+
+interface Props {
+    url: string,
+    badgeTitle?: string,
+    badgeIcon?: string
+}
+
+const { url, badgeTitle, badgeIcon } = Astro.props;
+
+let title: string;
+let description: string | undefined;
+let coverImage: string | undefined;
+let date: Date;
+let favicon: string;
+let hostname: string;
+let isInternal = false;
+
+const isExternalUrl = url.startsWith("http://") || url.startsWith("https://");
+
+if (isExternalUrl) {
+    const metadata = await fetchExternalMetadata(url);
+    title = metadata.title;
+    description = metadata.description;
+    coverImage = metadata.image;
+    date = new Date();
+    hostname = metadata.hostname;
+    favicon = `https://favicone.com/${hostname}`;
+} else {
+    let entry;
+    try {
+        entry = await getEntry("blog", url);
+    } catch (error) {
+        entry = null;
+    }
+
+    if (entry) {
+        isInternal = true;
+        title = entry.data.title;
+        description = entry.data.description;
+        coverImage = entry.data.coverImage;
+        date = entry.data.date;
+        hostname = Astro.site?.hostname || "localhost";
+        favicon = "/favicon.ico";
+    } else {
+        title = "Not Found";
+        description = "This blog post could not be found.";
+        coverImage = undefined;
+        date = new Date();
+        hostname = "localhost";
+        favicon = "/favicon.ico";
+    }
+}
+
+const finalUrl = isInternal ? `/${url}` : url;
+const formattedDate = date.toLocaleDateString("ja-JP", { year: "numeric", month: "long", day: "numeric" });
+---
+
+<a href={finalUrl} class={`no-underline text-inherit block ${badgeTitle ? 'mt-6' : ''}`}>
+    <Card class="relative border border-(--thin-color) hover:shadow-lg transition-shadow">
+        {badgeTitle && (
+            <TabBadge class="bg-(--custom-text-color) text-white flex items-center gap-1">
+                {badgeIcon && <Icon name={badgeIcon} class="w-3 h-3" />}
+                {badgeTitle}
+            </TabBadge>
+        )}
+
+        <div class="grid grid-cols-[160px_1fr] gap-6 items-start">
+            <div class="w-40 aspect-video overflow-hidden rounded-(--basic-border-radius)">
+                {coverImage ? (
+                    <img
+                        src={coverImage}
+                        alt={title}
+                        class="w-full h-full object-cover"
+                    />
+                ) : (
+                    <div class="w-full h-full bg-[#ddd] flex items-center justify-center text-[#999] font-bold text-sm">
+                        NO IMAGE
+                    </div>
+                )}
+            </div>
+
+            <div class="flex flex-col gap-3">
+                <h3 class="m-0 text-xl font-bold leading-snug">
+                    {title}
+                </h3>
+                {description && (
+                    <p class="m-0 text-(--pallid-text-color) leading-relaxed">
+                        {description}
+                    </p>
+                )}
+            </div>
+        </div>
+
+        <div class="flex justify-between items-center mt-4 pt-4 border-t border-(--thin-color) text-sm text-(--pallid-text-color)">
+            <div class="flex items-center gap-2">
+                <img
+                    src={favicon}
+                    alt={hostname}
+                    class="w-4 h-4"
+                    onerror="this.style.display='none'"
+                />
+                <span>{hostname}</span>
+            </div>
+            <span>{formattedDate}</span>
+        </div>
+    </Card>
+</a>

@@ -10,6 +10,7 @@ const blog = defineCollection({
     coverImage: z.string().optional(),
     date: z.date(),
     timeToRead: z.number().optional(),
+    creator: z.string().optional(),
   }),
 });
 

@@ -1,0 +1,178 @@
+---
+import Card from "@/components/primitives/card.astro";
+import { Icon } from "astro-icon/components";
+import { tv, type VariantProps } from "tailwind-variants/lite";
+
+interface SocialLink {
+    icon: string,
+    url: string
+}
+
+interface Props extends VariantProps<typeof creatorCard> {
+    id: string;
+    name: string;
+    description?: string;
+    avatar?: string;
+    socials?: SocialLink[];
+    class?: string;
+}
+
+const { id, name, description, avatar, socials, variant = "default", class: className } = Astro.props;
+
+const creatorCard = tv({
+    slots: {
+        container: "relative hover:shadow-lg transition-shadow",
+        socialButton: "w-10 h-10 flex items-center justify-center rounded-(--basic-border-radius) transition-colors no-underline",
+    },
+    variants: {
+        variant: {
+            default: {
+                container: "border border-(--thin-color)",
+                socialButton: "border border-(--thin-color) hover:bg-[#f5f5f5]",
+            },
+            red: {
+                container: "border-[3px] border-[var(--red-color)]",
+                socialButton: "border-2 border-[var(--red-color)] hover:bg-[var(--red-color)] hover:text-white",
+            },
+            pink: {
+                container: "border-[3px] border-[var(--pink-color)]",
+                socialButton: "border-2 border-[var(--pink-color)] hover:bg-[var(--pink-color)] hover:text-white",
+            },
+            purple: {
+                container: "border-[3px] border-[var(--purple-color)]",
+                socialButton: "border-2 border-[var(--purple-color)] hover:bg-[var(--purple-color)] hover:text-white",
+            },
+            deep: {
+                container: "border-[3px] border-[var(--deep-color)]",
+                socialButton: "border-2 border-[var(--deep-color)] hover:bg-[var(--deep-color)] hover:text-white",
+            },
+            indigo: {
+                container: "border-[3px] border-[var(--indigo-color)]",
+                socialButton: "border-2 border-[var(--indigo-color)] hover:bg-[var(--indigo-color)] hover:text-white",
+            },
+            blue: {
+                container: "border-[3px] border-[var(--blue-color)]",
+                socialButton: "border-2 border-[var(--blue-color)] hover:bg-[var(--blue-color)] hover:text-white",
+            },
+            "light-blue": {
+                container: "border-[3px] border-[var(--light-blue-color)]",
+                socialButton: "border-2 border-[var(--light-blue-color)] hover:bg-[var(--light-blue-color)] hover:text-white",
+            },
+            cyan: {
+                container: "border-[3px] border-[var(--cyan-color)]",
+                socialButton: "border-2 border-[var(--cyan-color)] hover:bg-[var(--cyan-color)] hover:text-white",
+            },
+            teal: {
+                container: "border-[3px] border-[var(--teal-color)]",
+                socialButton: "border-2 border-[var(--teal-color)] hover:bg-[var(--teal-color)] hover:text-white",
+            },
+            green: {
+                container: "border-[3px] border-[var(--green-color)]",
+                socialButton: "border-2 border-[var(--green-color)] hover:bg-[var(--green-color)] hover:text-white",
+            },
+            "light-green": {
+                container: "border-[3px] border-[var(--light-green-color)]",
+                socialButton: "border-2 border-[var(--light-green-color)] hover:bg-[var(--light-green-color)] hover:text-white",
+            },
+            lime: {
+                container: "border-[3px] border-[var(--lime-color)]",
+                socialButton: "border-2 border-[var(--lime-color)] hover:bg-[var(--lime-color)] hover:text-white",
+            },
+            yellow: {
+                container: "border-[3px] border-[var(--yellow-color)]",
+                socialButton: "border-2 border-[var(--yellow-color)] hover:bg-[var(--yellow-color)] hover:text-white",
+            },
+            amber: {
+                container: "border-[3px] border-[var(--amber-color)]",
+                socialButton: "border-2 border-[var(--amber-color)] hover:bg-[var(--amber-color)] hover:text-white",
+            },
+            orange: {
+                container: "border-[3px] border-[var(--orange-color)]",
+                socialButton: "border-2 border-[var(--orange-color)] hover:bg-[var(--orange-color)] hover:text-white",
+            },
+            "deep-orange": {
+                container: "border-[3px] border-[var(--deep-orange-color)]",
+                socialButton: "border-2 border-[var(--deep-orange-color)] hover:bg-[var(--deep-orange-color)] hover:text-white",
+            },
+            brown: {
+                container: "border-[3px] border-[var(--brown-color)]",
+                socialButton: "border-2 border-[var(--brown-color)] hover:bg-[var(--brown-color)] hover:text-white",
+            },
+            "light-grey": {
+                container: "border-[3px] border-[var(--light-grey-color)]",
+                socialButton: "border-2 border-[var(--light-grey-color)] hover:bg-[var(--light-grey-color)] hover:text-white",
+            },
+            grey: {
+                container: "border-[3px] border-[var(--grey-color)]",
+                socialButton: "border-2 border-[var(--grey-color)] hover:bg-[var(--grey-color)] hover:text-white",
+            },
+            "dark-grey": {
+                container: "border-[3px] border-[var(--dark-grey-color)]",
+                socialButton: "border-2 border-[var(--dark-grey-color)] hover:bg-[var(--dark-grey-color)] hover:text-white",
+            },
+            "blue-gray": {
+                container: "border-[3px] border-[var(--blue-gray-color)]",
+                socialButton: "border-2 border-[var(--blue-gray-color)] hover:bg-[var(--blue-gray-color)] hover:text-white",
+            },
+            black: {
+                container: "border-[3px] border-[var(--black-color)]",
+                socialButton: "border-2 border-[var(--black-color)] hover:bg-[var(--black-color)] hover:text-white",
+            },
+            white: {
+                container: "border-[3px] border-[var(--white-color)]",
+                socialButton: "border-2 border-[var(--white-color)] hover:bg-[var(--white-color)] hover:text-black",
+            },
+        },
+    },
+    defaultVariants: {
+        variant: "default",
+    },
+});
+
+const styles = creatorCard({ variant });
+---
+
+<Card class={styles.container({ class: className })}>
+    <div class="grid grid-cols-[100px_1fr] gap-6 items-start">
+        <div class="w-[100px] h-[100px] overflow-hidden rounded-(--basic-border-radius)">
+            {avatar ? (
+                <img
+                    src={avatar}
+                    alt={name}
+                    class="w-full h-full object-cover"
+                />
+            ) : (
+                <div class="w-full h-full bg-[#ddd] flex items-center justify-center text-[#999] font-bold text-sm">
+                    NO IMAGE
+                </div>
+            )}
+        </div>
+
+        <div class="flex flex-col gap-3">
+            <a href={`/creator/${id}`} class="no-underline hover:underline">
+                <h3 class="m-0 text-xl font-bold leading-snug text-[#0066cc] transition-colors">
+                    {name}
+                </h3>
+            </a>
+            {description && (
+                <p class="m-0 text-(--pallid-text-color) leading-relaxed">
+                    {description}
+                </p>
+            )}
+            {socials && socials.length > 0 && (
+                <div class="flex gap-2 mt-2">
+                    {socials.map((social) => (
+                        <a
+                            href={social.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class={styles.socialButton()}
+                        >
+                            <Icon name={social.icon} class="w-5 h-5 text-[#999]" />
+                        </a>
+                    ))}
+                </div>
+            )}
+        </div>
+    </div>
+</Card>
